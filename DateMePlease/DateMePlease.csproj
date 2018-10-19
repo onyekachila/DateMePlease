@@ -46,6 +46,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -197,12 +209,42 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Data\DateMePleaseContext.cs" />
+    <Compile Include="Data\DateMePleaseInitializer.cs" />
+    <Compile Include="Data\DateMePleaseRepository.cs" />
+    <Compile Include="Data\IDateMePleaseRepository.cs" />
+    <Compile Include="Entities\Demographics.cs" />
+    <Compile Include="Entities\Favorite.cs" />
+    <Compile Include="Entities\Interest.cs" />
+    <Compile Include="Entities\InterestType.cs" />
+    <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\Photo.cs" />
+    <Compile Include="Entities\Profile.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810190148385_InitialModel.cs" />
+    <Compile Include="Migrations\201810190148385_InitialModel.Designer.cs">
+      <DependentUpon>201810190148385_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810190159257_UpdateIntrestAndIntrestType.cs" />
+    <Compile Include="Migrations\201810190159257_UpdateIntrestAndIntrestType.Designer.cs">
+      <DependentUpon>201810190159257_UpdateIntrestAndIntrestType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810190205212_RemovedIntrest.cs" />
+    <Compile Include="Migrations\201810190205212_RemovedIntrest.Designer.cs">
+      <DependentUpon>201810190205212_RemovedIntrest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810190238318_ModifiedModel.cs" />
+    <Compile Include="Migrations\201810190238318_ModifiedModel.Designer.cs">
+      <DependentUpon>201810190238318_ModifiedModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RandomProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -215,6 +257,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\addphoto.jpg" />
+    <Content Include="Images\awkwardguy.jpg" />
+    <Content Include="Images\disheveled.jpg" />
+    <Content Include="Images\fashionnightmare.jpg" />
+    <Content Include="Images\hairdowoman.jpg" />
+    <Content Include="Images\intenselady.jpg" />
+    <Content Include="Images\knifegirl.jpg" />
+    <Content Include="Images\mustachioed.jpg" />
+    <Content Include="Images\raspberryberet.jpg" />
+    <Content Include="Images\smileydude.jpg" />
+    <Content Include="Images\smirkingviolet.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -231,7 +284,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -281,6 +336,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810190148385_InitialModel.resx">
+      <DependentUpon>201810190148385_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810190159257_UpdateIntrestAndIntrestType.resx">
+      <DependentUpon>201810190159257_UpdateIntrestAndIntrestType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810190205212_RemovedIntrest.resx">
+      <DependentUpon>201810190205212_RemovedIntrest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810190238318_ModifiedModel.resx">
+      <DependentUpon>201810190238318_ModifiedModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

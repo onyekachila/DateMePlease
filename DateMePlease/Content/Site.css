@@ -1,24 +1,17 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿@import url(http://fonts.googleapis.com/css?family=Roboto:400,900);
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', 'OpenSans', sans-serif;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+  font-family: 'Open Sans', Tahoma, Verdana, sans-serif;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.logo {
+  padding-top: 0;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.nav > li > a:focus, .nav > li > a:hover {
+  color: red;
 }
